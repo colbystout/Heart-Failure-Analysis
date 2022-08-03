@@ -1,4 +1,4 @@
 # Heart-Failure-Analysis
-## An analysis of heart failure cases
+## An Analysis of Heart Failure Cases
 
 In progress.
