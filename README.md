@@ -7,7 +7,7 @@ The dataset was clinically and professionally collected by the party below. The 
 
 Davide Chicco, Giuseppe Jurman: Machine learning can predict survival patients with heart failure from serum creatine and ejection fraction alone. [BMC Medical Informatics and Decision Making 20, 16 (2020)](https://bmcmedinformdecismak.biomedcentral.com/articles/10.1186/s12911-020-1023-5).
 
-This dataset was built and structured with the main focus being on machine learning. The .csv for the original data as well as the transformed data + change log can be found in the Data Set folder.
+This dataset was built and structured with the main focus being on machine learning. The .csv for the original data as well as the transformed data + change log can be found in the "Data Set and Changelogs" folder.
 
 License: CC BY 4.0
 
@@ -26,6 +26,12 @@ The original dataset was cleaned in excel by giving Patient ID keys to each reco
 
 The SQL notebook, "Heart Failure Analysis.ipynb," contained within the repository, outlines my use of SQL to find exporatory trends before moving into Power BI for more complex analysis. I used Azure Data Studio to build the notebook.
 
+<img width="1435" alt="Notebook Screenshot" src="https://user-images.githubusercontent.com/103079066/194187229-3d75ebbd-2fa4-4b70-855e-f80427f25007.png">
+
 ## Analyzing in Power BI
 
+
+
 ## Results
+
+
