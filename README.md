@@ -30,7 +30,7 @@ The SQL notebook, "Heart Failure Analysis.ipynb," contained within the repositor
 
 ## Analyzing in Power BI
 
-
+<img alt="Power BI Dashboard Screenshot" src="https://github.com/colbystout/Heart-Failure-Analysis/blob/main/Power%20BI/Dashboard%20Screenshot.png">
 
 ## Results
 
