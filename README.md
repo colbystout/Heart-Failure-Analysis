@@ -28,10 +28,105 @@ The original dataset was cleaned in excel by giving Patient ID keys to each reco
 
 The SQL notebook, "Heart Failure Analysis.ipynb," contained within the repository, outlines my use of SQL to find exporatory trends before moving into Power BI for more complex analysis. I used Azure Data Studio to build the notebook.
 
+### Notebook Steps
+
+1. The early part of the notebook I queried simple breakdowns to get an idea of how attributes distributed across each sex.
+
+*Example:*
+<img width="270" alt="Screen Shot 2022-10-08 at 6 13 47 PM" src="https://user-images.githubusercontent.com/103079066/194729613-50198a2e-fbc3-4388-9d31-63a31dd90ffd.png">
+
+2. I aggregated a histogram of ages to find distributions of age groups most likely to have a heart attack, and generate averages for each age group in key attributes.
+
+--Using window functions and an aggregate count to find age trends
+SELECT
+    age,
+    COUNT(*) AS age_count,
+    ROUND(AVG(platelets),2) AS avg_platelet_count,
+    ROUND(AVG(serum_creatinine),2) AS avg_creatine,
+    ROUND(AVG(serum_sodium),2) AS avg_sodium,
+    ROUND(AVG(ejection_fraction),2) AS avg_ejec_frac,
+    ROUND(AVG(age) OVER(),2) AS avg_age,
+    MIN(age) OVER() AS min_age,
+    MAX(age) OVER() AS max_age
+FROM Heartfailure
+GROUP BY age
+ORDER BY age_count DESC, age DESC;
+
+*Example:*
+<img width="1073" alt="Screen Shot 2022-10-08 at 6 16 08 PM" src="https://user-images.githubusercontent.com/103079066/194729658-2308f41b-8068-4237-bda6-0fc9673c6756.png">
+
+3. I further segmented ages into 10 bins to increase the n for outlier ages. This allowed for more trustworth results across most age bins.
+
+--Use a CTE to create bins of ages
+WITH age_bin AS (
+    SELECT
+        Patient_ID,
+        CASE
+            WHEN age >= 40 AND age < 46 THEN '40-45'
+            WHEN age >= 46 AND age < 51 THEN '46-50'
+            WHEN age >= 51 AND age < 56 THEN '51-55'
+            WHEN age >= 56 AND age < 61 THEN '56-60'
+            WHEN age >= 61 AND age < 66 THEN '61-65'
+            WHEN age >= 66 AND age < 71 THEN '66-70'
+            WHEN age >= 71 AND age < 76 THEN '71-75'
+            WHEN age >= 76 AND age < 81 THEN '76-80'
+            WHEN age >= 81 AND age < 86 THEN '81-85'
+            WHEN age >= 86 AND age < 91 THEN '86-90'
+            WHEN age >= 91 AND age < 96 THEN '91-95'
+        END AS age_bin
+FROM Heartfailure
+)
+
+--Selecting averages and sums of all applicable attributes across each bin
+SELECT
+    age_bin,
+    COUNT(*) AS age_count,
+    ROUND(AVG(platelets),2) AS avg_platelet_count,
+    ROUND(AVG(serum_creatinine),2) AS avg_serum_creatine,
+    ROUND(AVG(serum_sodium),2) AS avg_serum_sodium,
+    ROUND(AVG(ejection_fraction),2) AS avg_ejec_frac,
+    ROUND(AVG(creatinine_phosphokinase),2) AS avg_creatine_phos,
+    SUM(smoking) AS smoking_count,
+    SUM(diabetes) AS diabetic_count,
+    SUM(anaemia) AS anaemia_count,
+    SUM(high_blood_pressure) AS high_bp_count,
+    SUM(DEATH_EVENT) AS deaths
+FROM Heartfailure
+JOIN
+    age_bin ON Heartfailure.Patient_ID = age_bin.Patient_ID
+GROUP BY age_bin
+ORDER BY age_bin
+
+*Example:*
 <img width="1435" alt="Notebook Screenshot" src="https://user-images.githubusercontent.com/103079066/194187229-3d75ebbd-2fa4-4b70-855e-f80427f25007.png">
+
+*Example:*
+<img width="1272" alt="Screen Shot 2022-10-08 at 6 18 39 PM" src="https://user-images.githubusercontent.com/103079066/194729730-2496fafd-2b56-4981-bb73-03d213d1aa81.png">
 
 ## Analyzing in Power BI
 
+PDF Export of my Power BI pages are contained in the "Power BI" folder.
+
+### PAGES:
+ 
+1. Dashboard
+2. Metrics
+3. Time Trends
+4. Level Comparisons by Gender
+5. Mortality Rates
+6. Age Bin Analysis
+7. Time Quadrant Analysis
+
+### Building the Dashboard
+
+1. I imported the data through my Google Drive.
+2. (No PowerQuery transformations were needed due to the editing of the raw data in Google Sheets.)
+3. Used DAX to write a Mortality Rate metric
+  - Mortality Rate = SUM(heart_failure_clinical_records_dataset[DEATH_EVENT]) / COUNT(heart_failure_clinical_records_dataset[DEATH_EVENT])
+4. Created a series of pages with exploratory visuals in order to discover the most insightful trends.
+5. Finished with the "Dashboard" page to compile the most compelling visuals generated throughout each page.
+
+*Example:*
 <img alt="Power BI Dashboard Screenshot" src="https://github.com/colbystout/Heart-Failure-Analysis/blob/main/Power%20BI/Dashboard%20Screenshot.png">
 
 ## Results
