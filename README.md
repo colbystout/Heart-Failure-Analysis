@@ -92,5 +92,15 @@ PDF Export of my Power BI pages are contained in the "Power BI" folder.
 
 1. Monitoring serum sodium levels and keeping them under 130 will greatly decrease the risk of heart failure.
 2. Patients with the highest serum creatine levels should be monitored the closest during the first 3 months following a heart attack.
+3. Patients with anaemia or hypertension, and especially those with both, should be treated with priority; there is almost a 40% mortality rate for these patients.
+ - According to the [National Nutrition Council](https://www.nnc.gov.ph/regional-offices/mindanao/region-xi-davao-region/8185-anemia-and-hypertension-are-they-the-same), hypertension is shown to be caused by severe anaemia due to the body trying desperately to get oxygen to the body.
 
+### Data Requests
 
+1. A larger sample size.
+2. Race/ethnicity demographic data.
+3. Patient geographical location.
+
+Collecting data on the above three criteria would greatly improve effectiveness and accuracy of analysis.
+
+## Please feel free to message me further insights or recommendations; thank you for reading!
