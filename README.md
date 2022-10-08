@@ -32,75 +32,20 @@ The SQL notebook, "Heart Failure Analysis.ipynb," contained within the repositor
 
 1. The early part of the notebook I queried simple breakdowns to get an idea of how attributes distributed across each sex.
 
-*Example:*
+**Example:**
 <img width="270" alt="Screen Shot 2022-10-08 at 6 13 47 PM" src="https://user-images.githubusercontent.com/103079066/194729613-50198a2e-fbc3-4388-9d31-63a31dd90ffd.png">
 
 2. I aggregated a histogram of ages to find distributions of age groups most likely to have a heart attack, and generate averages for each age group in key attributes.
 
---Using window functions and an aggregate count to find age trends
-SELECT
-    age,
-    COUNT(*) AS age_count,
-    ROUND(AVG(platelets),2) AS avg_platelet_count,
-    ROUND(AVG(serum_creatinine),2) AS avg_creatine,
-    ROUND(AVG(serum_sodium),2) AS avg_sodium,
-    ROUND(AVG(ejection_fraction),2) AS avg_ejec_frac,
-    ROUND(AVG(age) OVER(),2) AS avg_age,
-    MIN(age) OVER() AS min_age,
-    MAX(age) OVER() AS max_age
-FROM Heartfailure
-GROUP BY age
-ORDER BY age_count DESC, age DESC;
-
-*Example:*
+**Example:**
 <img width="1073" alt="Screen Shot 2022-10-08 at 6 16 08 PM" src="https://user-images.githubusercontent.com/103079066/194729658-2308f41b-8068-4237-bda6-0fc9673c6756.png">
 
 3. I further segmented ages into 10 bins to increase the n for outlier ages. This allowed for more trustworth results across most age bins.
 
---Use a CTE to create bins of ages
-WITH age_bin AS (
-    SELECT
-        Patient_ID,
-        CASE
-            WHEN age >= 40 AND age < 46 THEN '40-45'
-            WHEN age >= 46 AND age < 51 THEN '46-50'
-            WHEN age >= 51 AND age < 56 THEN '51-55'
-            WHEN age >= 56 AND age < 61 THEN '56-60'
-            WHEN age >= 61 AND age < 66 THEN '61-65'
-            WHEN age >= 66 AND age < 71 THEN '66-70'
-            WHEN age >= 71 AND age < 76 THEN '71-75'
-            WHEN age >= 76 AND age < 81 THEN '76-80'
-            WHEN age >= 81 AND age < 86 THEN '81-85'
-            WHEN age >= 86 AND age < 91 THEN '86-90'
-            WHEN age >= 91 AND age < 96 THEN '91-95'
-        END AS age_bin
-FROM Heartfailure
-)
-
---Selecting averages and sums of all applicable attributes across each bin
-SELECT
-    age_bin,
-    COUNT(*) AS age_count,
-    ROUND(AVG(platelets),2) AS avg_platelet_count,
-    ROUND(AVG(serum_creatinine),2) AS avg_serum_creatine,
-    ROUND(AVG(serum_sodium),2) AS avg_serum_sodium,
-    ROUND(AVG(ejection_fraction),2) AS avg_ejec_frac,
-    ROUND(AVG(creatinine_phosphokinase),2) AS avg_creatine_phos,
-    SUM(smoking) AS smoking_count,
-    SUM(diabetes) AS diabetic_count,
-    SUM(anaemia) AS anaemia_count,
-    SUM(high_blood_pressure) AS high_bp_count,
-    SUM(DEATH_EVENT) AS deaths
-FROM Heartfailure
-JOIN
-    age_bin ON Heartfailure.Patient_ID = age_bin.Patient_ID
-GROUP BY age_bin
-ORDER BY age_bin
-
-*Example:*
+**Example:**
 <img width="1435" alt="Notebook Screenshot" src="https://user-images.githubusercontent.com/103079066/194187229-3d75ebbd-2fa4-4b70-855e-f80427f25007.png">
 
-*Example:*
+**Example:**
 <img width="1272" alt="Screen Shot 2022-10-08 at 6 18 39 PM" src="https://user-images.githubusercontent.com/103079066/194729730-2496fafd-2b56-4981-bb73-03d213d1aa81.png">
 
 ## Analyzing in Power BI
@@ -130,5 +75,22 @@ PDF Export of my Power BI pages are contained in the "Power BI" folder.
 <img alt="Power BI Dashboard Screenshot" src="https://github.com/colbystout/Heart-Failure-Analysis/blob/main/Power%20BI/Dashboard%20Screenshot.png">
 
 ## Results
+
+### Analysis Key Findings
+
+1. Men are more likely to experience a heart attack. This is already known but important to establish once again.
+2. People in their 60s are most likely to experience heart failure.
+3. Mortality rate increases as age increases.
+4. The majority of deaths occured in 75 days or less days of final follow-up time by the scientists. The majority of patients would "survive" the heart attack if they stayed alive at least 75 days after the heart attack.
+5. Hypertension and Anaeamia are higher risk factors of death than smoking are diabetes are.
+6. The first quadrant of follow-up times, which also had the highest deaths, had far higher average serum creatine levels than the other three.
+7. CPK levels are much more likely to spike high for men than they are women when serum sodium levels are 130 or higher.
+8. Hypertension is more likely for men when serum sodium reaches 130 or higher.
+9. Almost 1/3 of heart attackes resulted in death. (The data set does not have a high enough sample size or give a demographic/location to make further statements on this statistic.)
+
+### Recommendations
+
+1. Monitoring serum sodium levels and keeping them under 130 will greatly decrease the risk of heart failure.
+2. Patients with the highest serum creatine levels should be monitored the closest during the first 3 months following a heart attack.
 
 
