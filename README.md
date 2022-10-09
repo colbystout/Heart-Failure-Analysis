@@ -1,4 +1,4 @@
-# Heart-Failure-Analysis *In Progress*
+# Heart-Failure-Analysis
 ## An Analysis of Heart Attack Causes and Trends
 
 ## The Dataset
