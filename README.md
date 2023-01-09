@@ -40,7 +40,7 @@ The SQL notebook, "Heart Failure Analysis.ipynb," contained within the repositor
 **Example:**
 <img width="1073" alt="Screen Shot 2022-10-08 at 6 16 08 PM" src="https://user-images.githubusercontent.com/103079066/194729658-2308f41b-8068-4237-bda6-0fc9673c6756.png">
 
-3. I further segmented ages into 10 bins to increase the n for outlier ages. This allowed for more trustworth results across most age bins.
+3. I further segmented ages into 10 bins to increase the n for outlier ages. This allowed for more trustworthy results across most age bins.
 
 **Example:**
 <img width="1435" alt="Notebook Screenshot" src="https://user-images.githubusercontent.com/103079066/194187229-3d75ebbd-2fa4-4b70-855e-f80427f25007.png">
