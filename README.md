@@ -78,7 +78,7 @@ PDF Export of my Power BI pages are contained in the "Power BI" folder.
 
 ### Analysis Key Findings
 
-1. Men are more likely to experience heart failur. This is already known but important to establish once again.
+1. Men are more likely to experience heart failure. This is already known but important to establish once again.
 2. People in their 60s are most likely to experience heart failure.
 3. Mortality rate increases as age increases.
 4. The majority of deaths occured in 75 days or less days of final follow-up time by the scientists. The majority of patients would "survive" the heart attack if they stayed alive at least 75 days after the heart attack.
