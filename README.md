@@ -15,7 +15,7 @@ License: CC BY 4.0
 
 The original dataset was cleaned in excel by giving Patient ID keys to each record, as none previously existed, and also to replace 1/0 values to M/F for the sex column. The purpose of this notebook is to execute exploratory analysis on the heart failure dataset for trends and summary tables. After exploratory analysis is done, I will move the data to Power BI for detailed visualization. Even though the dataset was designed for machine learning, there are still many insights to be made through descriptive analysis.
 
-*Note*: The most important piece of this dataset is the hardest part to understand. The "time" attribute denotes the last status of the patient observed by the scientists, who collected the data, until the patient either died or they lost contact. Losing contact will be considered a "survival" by me and denoted as a "0" as a data point. Any 1's in this attribute are officialy counted as deaths at the follow-up point by the scientists. This is a small inconsistency in the data set for my analysis, but will still offer enough accuracy for insights.
+*Note*: The most important piece of this dataset is the hardest part to understand. The "time" attribute denotes the last status of the patient observed by the scientists, who collected the data, until the patient either died or they lost contact. Losing contact will be considered a "survival" by me and denoted as a "0" as a data point. Any 1's in this attribute are officialy counted as deaths at the follow-up point by the scientists. This is a small inconsistency in the data set from this longitudinal study for my analysis, but will still offer enough accuracy for insights.
 
 ## The Questions that Need Answered
 
