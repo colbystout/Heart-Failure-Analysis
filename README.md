@@ -67,7 +67,7 @@ PDF Export of my Power BI pages are contained in the "Power BI" folder.
 1. I imported the data through my Google Drive.
 2. (No PowerQuery transformations were needed due to the editing of the raw data in Google Sheets.)
 3. Used DAX to write a Mortality Rate metric
-  - Mortality Rate = SUM(heart_failure_clinical_records_dataset[DEATH_EVENT]) / COUNT(heart_failure_clinical_records_dataset[DEATH_EVENT])
+![image](https://user-images.githubusercontent.com/103079066/226336430-144ac92d-739b-459f-b0fe-852c9ab7d39e.png)
 4. Created a series of pages with exploratory visuals in order to discover the most insightful trends.
 5. Finished with the "Dashboard" page to compile the most compelling visuals generated throughout each page.
 
